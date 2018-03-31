@@ -37,7 +37,7 @@ export default {
       extension: ['png', 'jpg'],
     },
   },
-  resume: 'request',
+  resume: 'required',
   gender: 'required',
   checkbox: {
     rules: {
