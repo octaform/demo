@@ -43,11 +43,14 @@ module.exports = {
       test: /\.js$/,
       exclude: /node_modules/,
       use: [
-        'babel-loader',
-        'eslint-loader'
+        'babel-loader'
       ],
 		}],
-	},
+  },
+  devServer: {
+    contentBase: path.join(__dirname, "src"),
+    port: 3000
+  },
 	plugins: [
 		new HtmlWebpackPlugin({
 			template: './src/index.html',
