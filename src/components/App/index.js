@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Errors from '../Errors';
 import Octaform from '../../../../octaform/dist';
-import Additionals from '../../../../octaform-validations/dist';
+import Additionals from '../../../../octaform-additional/dist';
 import ValidationMap from './ValidationMap';
 
 export default class App extends Component {
