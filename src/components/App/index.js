@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
+import Additionals from '../../../../octaform-additional/src';
+import Octaform from '../../../../octaform/src';
 import Errors from '../Errors';
-import Octaform from '../../../../octaform/dist';
-import Additionals from '../../../../octaform-additional/dist';
 import ValidationMap from './ValidationMap';
 
 export default class App extends Component {
@@ -10,8 +10,8 @@ export default class App extends Component {
     this.state = {
       hasErrors: [],
     }
-
-    Octaform.validator.add(Additionals);
+    this.octaform = new Octaform();
+    this.octaform.validator.add(Additionals);
     this.onSubmit = this.onSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
     this.hasFieldError = this.hasFieldError.bind(this);
@@ -28,7 +28,7 @@ export default class App extends Component {
   }
 
   validate() {
-    const validate = Octaform.validateAll(ValidationMap);
+    const validate = this.octaform.validateAll(ValidationMap);
     this.setState({
       hasErrors: validate
     }, () => this.hasFieldError(validate));
@@ -53,7 +53,7 @@ export default class App extends Component {
 
   render() {
     const { hasErrors } = this.state;
-    console.log(Octaform);
+    console.log(this.octaform);
 
     return (
       <div>

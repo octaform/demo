@@ -22,12 +22,12 @@
   },
   "homepage": "https://github.com/chrisgfortes/octaform-validate#readme",
   "dependencies": {
-    "babel-runtime": "^6.26.0",
     "lodash": "^4.17.5",
     "react": "^16.3.0",
     "react-dom": "^16.3.0"
   },
   "devDependencies": {
+    "babel-runtime": "^6.26.0",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.2.2",
