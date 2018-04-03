@@ -7,7 +7,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-	devtool: 'inline-source-map',
+  devtool: 'inline-source-map',
 	resolve: {
 		extensions: [
       '.js', '.jpg', '.png', '.svg'

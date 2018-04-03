@@ -16,8 +16,15 @@ export default class Errors extends Component {
               return (
                 <li key={this.uniqueKey()}>
                   <strong>Error:</strong>
+                  <i className='field'>
+                    {
+                      item.field
+                        .split(/(?![a-z])(?=[A-Z])/g)
+                        .join('-')
+                        .toLowerCase()
+                    }
+                  </i>
                   <span>{message}</span>
-                  <i className='field'>{item.field}</i>
                 </li>
               )
             })
