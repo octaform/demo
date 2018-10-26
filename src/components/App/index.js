@@ -55,7 +55,6 @@ export default class App extends Component {
 
   render() {
     const { hasErrors } = this.state;
-    console.log(this.octaform);
 
     return (
       <div>

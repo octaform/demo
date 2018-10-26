@@ -23,7 +23,9 @@ export default {
       required: 'First Name is required',
     },
   },
-  lastName: 'minlength:3',
+  lastName: {
+    rules: ['required', 'minlength:3']
+  },
   email: 'email',
   country: {
     rules: {
