@@ -757,6 +757,15 @@ h4 {
 .left {
   float: left; }
 
+.text-center {
+  text-align: center; }
+
+.text-right {
+  text-align: right; }
+
+.text-left {
+  text-align: left; }
+
 .hidden {
   display: none; }
 
@@ -786,5 +795,30 @@ h4 {
     font-size: 9px;
     text-transform: uppercase;
     position: relative; }
+
+.first {
+  margin-left: 0 !important; }
+
+.last {
+  margin-right: 0 !important; }
+
+.github-link {
+  display: inline-block;
+  text-decoration: none;
+  border-radius: 5px;
+  padding: 3px 10px;
+  margin-right: -34px;
+  position: relative;
+  top: 0; }
+  .github-link:hover {
+    text-decoration: underline;
+    opacity: 0.8; }
+  .github-link img {
+    vertical-align: middle;
+    margin-right: 5px;
+    width: 30px; }
+  .github-link span {
+    font-size: 15px;
+    vertical-align: middle; }
 
 /*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzdHlsZXMuY3NzIiwic291cmNlUm9vdCI6IiJ9*/
