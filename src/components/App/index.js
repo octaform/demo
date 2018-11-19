@@ -29,7 +29,7 @@ export default class App extends Component {
 
   validate() {
     const validate = this.octaform.validateAll(ValidationMap);
-    console.log(validate);
+    console.log('Validation::', validate);
 
     this.setState({
       hasErrors: validate
@@ -61,7 +61,14 @@ export default class App extends Component {
         <form className="container" onSubmit={this.onSubmit}>
           <div className="row">
             <div className="col-12">
-              <h4>Octaform Validate - Demo</h4>
+              <h4 className="col-6 first">Octaform Validate - Demo</h4>
+
+              <div className="col-6 text-right last">
+                <a href="https://github.com/octaform/octaform" rel="noopener noreferrer" target="_blank" className="github-link">
+                  <img src="https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png" alt="Octaform - Github" />
+                  <span>Github</span>
+                </a>
+              </div>
             </div>
 
             {!!hasErrors.length && (
