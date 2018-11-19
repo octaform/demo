@@ -5,8 +5,8 @@
   "main": "src/index.js",
   "scripts": {
     "start": "npm run server",
-    "prod": "npm run clean && npm run webpack -p --progress",
-    "build": "npm run clean && npm run webpack",
+    "build:prod": "npm run clean && npm run webpack -p --progress",
+    "build:dev": "npm run clean && npm run webpack",
     "clean": "rimraf dist",
     "server": "node_modules/.bin/webpack-dev-server",
     "webpack": "node_modules/.bin/webpack"
