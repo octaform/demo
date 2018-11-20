@@ -29,7 +29,7 @@ export default class App extends Component {
 
   validate() {
     const validate = this.octaform.validateAll(ValidationMap);
-    console.log('Validate::', validate);
+    console.log('Validation::', validate);
 
     this.setState({
       hasErrors: validate
