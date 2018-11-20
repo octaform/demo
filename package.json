@@ -9,7 +9,7 @@
     "build:dev": "npm run clean && npm run webpack",
     "clean": "rimraf dist",
     "server": "node_modules/.bin/webpack-dev-server",
-    "deploy": "npm run build:prod && git subtree push --prefix dist origin gh-pages",
+    "deploy": "npm run build:prod && git subtree push --prefix dist/ origin gh-pages",
     "webpack": "node_modules/.bin/webpack"
   },
   "repository": {
