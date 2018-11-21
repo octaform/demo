@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Additionals from '../../../../octaform-additional/src';
+import Schema from '../../../../octaform-additional/src';
 import Octaform from '../../../../octaform/src';
 import Errors from '../Errors';
 import ValidationMap from './ValidationMap';
@@ -10,8 +10,9 @@ export default class App extends Component {
     this.state = {
       hasErrors: [],
     }
+
     this.octaform = new Octaform();
-    this.octaform.validator.add(Additionals);
+    this.octaform.validator.add(Schema);
     this.onSubmit = this.onSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
     this.hasFieldError = this.hasFieldError.bind(this);

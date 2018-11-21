@@ -3,6 +3,7 @@ export default {
     rules: {
       required: true,
       minlength: 4,
+      letter: true
     },
     messages: {
       required: 'First Name is required',
@@ -22,6 +23,7 @@ export default {
     rules: {
       required: true,
       extension: ['png', 'jpg'],
+      maxsize: 500000
     },
   },
   resume: 'required',
