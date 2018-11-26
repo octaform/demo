@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Schema from '../../../../octaform-additional/src';
+import OctaformAddPkg from '../../../../octaform-additional/package.json';
 import Octaform from '../../../../octaform/src';
+import OctaformPkg from '../../../../octaform/package.json';
 import Errors from '../Errors';
 import ValidationMap from './ValidationMap';
 
@@ -210,8 +212,14 @@ export default class App extends Component {
           </div>
           
           <div className="row">
-            <div className="col-12 right">
-              <br />
+            <div className="col-6 col-version">
+              <ul className="package-version">
+                <li>{OctaformPkg.alias} {`v${OctaformPkg.version}`}</li>
+                <li>{OctaformAddPkg.alias} {`v${OctaformAddPkg.version}`}</li>
+              </ul>
+            </div>
+
+            <div className="col-6 col-button">
               <button 
                 className="button-primary" 
                 type="submit"

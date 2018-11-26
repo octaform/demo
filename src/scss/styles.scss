@@ -360,3 +360,26 @@ h4{
     vertical-align: middle;
   }
 }
+
+.package-version{
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  font-size: 12px;
+}
+
+.col-button{
+  text-align: right;
+}
+
+@media only screen and (max-width: 45em) {  /* 720px */
+  .col-version{
+    text-align: center;
+  }
+
+  .col-button{
+    .button-primary{
+      width: 100%;
+    }
+  }
+}
