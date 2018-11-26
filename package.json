@@ -1,6 +1,6 @@
 {
   "name": "octaform-demo",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Octaform Validate demo page",
   "main": "src/index.js",
   "scripts": {
