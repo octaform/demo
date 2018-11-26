@@ -1,5 +1,4 @@
-const ENV = (JSON.stringify(process.env.NODE_ENV || 'dev'));
-const Package = require('./package.json');
+const Package = require('../package.json');
 const path = require('path');
 const webpack = require('webpack');
 const CircularDependencyPlugin = require('circular-dependency-plugin');
@@ -7,7 +6,6 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  devtool: 'inline-source-map',
 	resolve: {
 		extensions: [
       '.js', '.jpg', '.png', '.svg'
@@ -19,7 +17,7 @@ module.exports = {
 	},
 	output: {
 		filename: '[name].[chunkhash].js',
-		path: path.resolve(__dirname, 'dist'),
+		path: path.resolve(__dirname, '../dist'),
 	},
 	module: {
 		rules: [{
@@ -42,10 +40,6 @@ module.exports = {
       ],
 		}],
   },
-  devServer: {
-    contentBase: path.join(__dirname, "src"),
-    port: 3000
-  },
 	plugins: [
 		new HtmlWebpackPlugin({
 			template: './src/index.html',
@@ -57,11 +51,6 @@ module.exports = {
 		new CircularDependencyPlugin({
 			exclude: /node_modules/,
 			failOnError: false,
-		}),
-		new webpack.ProvidePlugin({}),
-		new webpack.DefinePlugin({
-			VERSION: JSON.stringify(Package.version),
-			'process.env.NODE_ENV': ENV,
-		}),
+		})
 	],
 };

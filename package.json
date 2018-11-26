@@ -4,12 +4,11 @@
   "description": "Octaform Validate demo page",
   "main": "src/index.js",
   "scripts": {
-    "start": "npm run server",
-    "build:prod": "npm run clean && npm run webpack -p --progress",
-    "build:dev": "npm run clean && npm run webpack",
+    "start": "webpack-dev-server --config ./webpack/config.dev.js",
+    "build:prod": "npm run clean && webpack -p --config ./webpack/config.prod.js",
+    "build:dev": "npm run clean && webpack --config ./webpack/config.dev.js",
     "clean": "rimraf dist",
-    "server": "node_modules/.bin/webpack-dev-server",
-    "deploy": "npm run build:prod && git subtree push --prefix dist/ origin gh-pages",
+    "deploy": "npm run build:prod && git push origin `git subtree split --prefix dist/ develop`:gh-pages",
     "webpack": "node_modules/.bin/webpack"
   },
   "repository": {
@@ -54,6 +53,7 @@
     "style-loader": "^0.20.2",
     "webpack": "^3.11.0",
     "webpack-cli": "^2.0.9",
-    "webpack-dev-server": "^2.11.2"
+    "webpack-dev-server": "^2.11.2",
+    "webpack-merge": "^4.1.4"
   }
 }
