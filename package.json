@@ -7,9 +7,10 @@
     "start": "webpack-dev-server --config ./webpack/config.dev.js",
     "build:prod": "npm run clean && webpack -p --config ./webpack/config.prod.js",
     "build:dev": "npm run clean && webpack --config ./webpack/config.dev.js",
-    "clean": "rimraf dist",
+    "clean": "npm run rimraf dist",
     "deploy": "npm run build:prod && git push origin `git subtree pull split --prefix dist develop`:gh-pages --force",
-    "webpack": "node_modules/.bin/webpack"
+    "webpack": "node_modules/.bin/webpack",
+    "rimraf": "node_modules/.bin/rimraf"
   },
   "repository": {
     "type": "git",
