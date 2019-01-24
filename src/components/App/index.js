@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import Schema from '../../../../octaform-additional/src';
-import OctaformAddPkg from '../../../../octaform-additional/package.json';
-import Octaform from '../../../../octaform/src';
-import OctaformPkg from '../../../../octaform/package.json';
+import OctaformAdditional from 'octaform-additional';
+import OctaformAddPkg from 'octaform-additional/package.json';
+import OctaformPkg from 'octaform/package.json';
+import Octaform from 'octaform';
 import Errors from '../Errors';
 import ValidationMap from './ValidationMap';
 
@@ -13,7 +13,7 @@ export default class App extends Component {
       hasErrors: [],
     }
 
-    Octaform.validator.add(Schema);
+    Octaform.validator.add(OctaformAdditional);
     this.onSubmit = this.onSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
     this.hasFieldError = this.hasFieldError.bind(this);
@@ -213,8 +213,8 @@ export default class App extends Component {
           <div className="row">
             <div className="col-6 col-version">
               <ul className="package-version">
-                <li>{OctaformPkg.alias} {`v${OctaformPkg.version}`}</li>
-                <li>{OctaformAddPkg.alias} {`v${OctaformAddPkg.version}`}</li>
+                <li>{`Octaform v${OctaformPkg.version}`}</li>
+                <li>{`Octaform Additional v${OctaformAddPkg.version}`}</li>
               </ul>
             </div>
 

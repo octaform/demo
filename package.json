@@ -23,6 +23,8 @@
   },
   "homepage": "https://github.com/chrisgfortes/octaform-validate#readme",
   "dependencies": {
+    "octaform": "^1.2.0",
+    "octaform-additional": "^1.0.13",
     "react": "^16.3.0",
     "react-dom": "^16.3.0"
   },
