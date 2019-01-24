@@ -12,6 +12,27 @@
 
 .container{
   max-width: 620px;
+
+  &__title {
+    display: inline-block;
+    width: calc(100% - 110px);
+
+    @media only screen and (max-width: 450px) {
+      width: 100%;
+      text-align: center;
+    }
+  }
+
+  &__links {
+    display: inline-block;
+    width: 110px;
+    text-align: right;
+
+    @media only screen and (max-width: 450px) {
+      width: 100%;
+      text-align: center;
+    }
+  }
 }
 
 label {
@@ -339,10 +360,9 @@ h4{
   display: inline-block;
   text-decoration: none;
   border-radius: 5px;
-  padding: 3px 10px;
-  margin-right: -34px;
+  padding: 0 10px;
   position: relative;
-  top: 0;
+  top: -4px;
 
   &:hover{
     text-decoration: underline;
