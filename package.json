@@ -1,6 +1,6 @@
 {
   "name": "octaform-demo",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Octaform Validate demo page",
   "main": "src/index.js",
   "scripts": {
@@ -47,6 +47,7 @@
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "git-revision-webpack-plugin": "^3.0.3",
     "glob": "^7.1.2",
     "html-webpack-plugin": "^4.0.0-beta.5",
     "node-sass": "^4.7.2",

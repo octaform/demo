@@ -24,6 +24,5 @@ deploy:
   keep-history: true
   local-dir: dist
   target-branch: gh-pages
-  name: CI Deployment
   on:
     branch: develop

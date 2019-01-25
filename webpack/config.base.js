@@ -4,6 +4,15 @@ const path = require('path');
 const CircularDependencyPlugin = require('circular-dependency-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const GitRevisionPlugin = require('git-revision-webpack-plugin');
+
+const gitRevisionPlugin = new GitRevisionPlugin();
+
+const GIT = {
+  COMMIT_SHORT_HASH: gitRevisionPlugin.version(),
+  COMMIT_HASH: gitRevisionPlugin.commithash(),
+  BRANCH: gitRevisionPlugin.branch()
+};
 
 module.exports = {
   resolve: {
@@ -38,16 +47,17 @@ module.exports = {
     splitChunks: {
       cacheGroups: {
         vendor: {
-          chunks: 'initial',
-          name: 'vendor',
-          test: 'vendor',
+          chunks: "initial",
+          name: "vendor",
+          test: "vendor",
           enforce: true
-        },
+        }
       }
     }
   },
   plugins: [
     new HtmlWebpackPlugin({
+      title: `Octaform Validate - [${GIT.COMMIT_SHORT_HASH}]`,
       template: "./src/index.html"
     }),
     new ExtractTextPlugin("styles.css"),
