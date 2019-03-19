@@ -5,6 +5,7 @@ import OctaformPkg from 'octaform/package.json';
 import Octaform from 'octaform';
 import Errors from '../Errors';
 import ValidationMap from './ValidationMap';
+import images from '../../utils/images';
 
 export default class App extends Component {
   constructor(props) {
@@ -67,7 +68,7 @@ export default class App extends Component {
 
               <div className="container__links">
                 <a href="https://github.com/octaform/octaform" rel="noopener noreferrer" target="_blank" className="github-link">
-                  <img src="https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png" alt="Octaform - Github" />
+                  <img src={images.githubLogo} alt="Octaform - Github" />
                   <span>Github</span>
                 </a>
               </div>

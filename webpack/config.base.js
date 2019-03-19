@@ -24,7 +24,8 @@ module.exports = {
   },
   output: {
     filename: "[name].[chunkhash].js",
-    path: path.resolve(__dirname, "../dist")
+    path: path.resolve(__dirname, "../dist"),
+    publicPath: '/',
   },
   module: {
     rules: [
@@ -40,6 +41,16 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: ["babel-loader"]
+      },
+      {
+        test: /\.(png|jpg|svg)$/,
+        use: {
+          loader: 'file-loader',
+          options: {
+            name: '[name].[hash].[ext]',
+            outputPath: 'img/'
+          }
+        }
       }
     ]
   },
