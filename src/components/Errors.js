@@ -10,26 +10,20 @@ export default class Errors extends Component {
 
     return (
       <ul className="errors">
-        {errors.map(item => {
-          return (
-            item.messages.map((message) => {
-              return (
-                <li key={this.uniqueKey()}>
-                  <strong>Error:</strong>
-                  <i className='field'>
-                    {
-                      item.field
-                        .split(/(?![a-z])(?=[A-Z])/g)
-                        .join('-')
-                        .toLowerCase()
-                    }
-                  </i>
-                  <span>{message}</span>
-                </li>
-              )
-            })
-          )
-        })}
+        {errors.map(item => item.messages.map((message) => (
+          <li key={this.uniqueKey()}>
+            <strong>Error:</strong>
+            <i className='field'>
+              {
+                item.field
+                  .split(/(?![a-z])(?=[A-Z])/g)
+                  .join('-')
+                  .toLowerCase()
+              }
+            </i>
+            <span>{message}</span>
+          </li>
+        )))}
       </ul>
     );
   }
