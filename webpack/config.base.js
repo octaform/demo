@@ -24,18 +24,23 @@ module.exports = {
   },
   output: {
     filename: "[name].[chunkhash].js",
-    path: path.resolve(__dirname, "../dist"),
-    publicPath: '/',
+    path: path.resolve(__dirname, "../dist")
   },
   module: {
     rules: [
       {
         test: /\.scss$/,
-        use: ExtractTextPlugin.extract(["css-loader", "sass-loader"])
+        use: ExtractTextPlugin.extract([
+          "css-loader", 
+          "sass-loader"
+        ])
       },
       {
         test: /\.css$/,
-        use: ["style-loader", "css-loader"]
+        use: [
+          "style-loader", 
+          "css-loader"
+        ]
       },
       {
         test: /\.js$/,
