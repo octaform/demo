@@ -12,13 +12,36 @@ export default {
   lastName: {
     rules: ['required', 'minlength:3']
   },
-  email: 'email',
+  email: {
+    rules: ['required', 'email']
+  },
+  password: {
+    rules: {
+      required: true
+    }
+  },
+  confirmPassword: {
+    rules: {
+      required: true,
+      equalTo: '[name=password]'
+    },
+    messages: {
+      equalTo: 'Passwords doesn\'t match',
+    },
+  },
   country: {
     rules: {
       required: true,
       valueNotEquals: 'BR',
     },
   },
+  range: {
+    rules: {
+      number: true,
+      range: [5, 8]
+    }
+  },
+  url: 'url',
   file: {
     rules: {
       required: true,

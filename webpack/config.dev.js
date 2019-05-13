@@ -7,6 +7,6 @@ module.exports = merge(configBase, {
   devtool: "inline-source-map",
   devServer: {
     contentBase: path.join(__dirname, "../src"),
-    port: 9001
+    port: 3000
   }
 });

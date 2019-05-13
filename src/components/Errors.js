@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export default class Errors extends Component {
+  static propTypes = {
+    errors: PropTypes.array
+  }
+
   uniqueKey(){
     return Math.random().toString(36).substring(2, 15)
   }

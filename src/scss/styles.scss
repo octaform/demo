@@ -47,7 +47,7 @@ label {
 
 label,
 div {
-  > strong{ 
+  .label{ 
     font-weight: 600;
     display: block;
     font-size: 14px;
@@ -55,24 +55,25 @@ div {
   }
 }
 
+.invalid {
+  span, label {
+    color: $colorWarning;
+  }
+
+  select, textarea {
+    border-color: $colorWarning;
+  }
+
+  @include inputTextTypes {
+    border-color: $colorWarning;
+  }  
+}
+
 @include inputTextTypes {
   @extend %inputTextStyle;
   
-  &.invalid{
-    border-color: #f60202;
-  }
-
   &:focus{
     @extend %inputFocusStyle;
-  }
-}
-
-textarea,
-select {
-  @extend %inputTextStyle;
-
-  &.invalid{
-    border-color: #f60202;
   }
 }
 
@@ -84,10 +85,6 @@ input {
     margin: 0;
     position: relative;
     padding: 6px 10px;
-
-    &.invalid{
-      border-color: #f60202;
-    }
   }
 
   &[type="checkbox"]{
@@ -200,12 +197,6 @@ input {
     margin-bottom: 0;
     vertical-align: baseline;
   }
-
-  &.invalid{
-    &:before{
-      border-color: #f60202;
-    }
-  }
 }
 
 .checkbox{
@@ -216,10 +207,6 @@ input {
     margin-left: 6px;
     vertical-align: middle;
   }
-}
-
-select{
-  margin: 0;
 }
 
 @include inputButtonTypes{
@@ -261,6 +248,9 @@ button{
 
 textarea, 
 select {
+  @extend %inputTextStyle;
+  margin: 0;
+
   &:focus{
     @extend %inputFocusStyle;
   }
@@ -345,6 +335,7 @@ h4{
     font-size: 9px;
     text-transform: uppercase;
     position: relative;
+    top: -1px;
   }
 }
 
@@ -390,6 +381,10 @@ h4{
 
 .col-button{
   text-align: right;
+}
+
+.span__info {
+  font-size: 14px;
 }
 
 @media only screen and (max-width: 45em) {  /* 720px */
