@@ -39,11 +39,6 @@ jobs:
 
       # Test the source code
       - run:
-          name: Testing
-          command: npm run test:prod
-
-      # Test the source code
-      - run:
           name: Building
           command: npm run build:prod
 
