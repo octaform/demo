@@ -63,6 +63,9 @@ jobs:
       - attach_workspace:
           at: ~/tmp
 
+      - add_ssh_keys:
+          fingerprint: "b2:ab:6d:29:ce:9f:40:51:45:df:d0:f8:3c:1e:d3:1e"
+
       # Configure gh-pages dependencies
       - run:
           name: Install and configure dependencies
@@ -70,10 +73,6 @@ jobs:
             sudo npm install -g --silent gh-pages
             git config user.email $GIT_EMAIL
             git config user.name "CircleCI"
-
-      - add_ssh_keys:
-          fingerprints:
-            - "b2:ab:6d:29:ce:9f:40:51:45:df:d0:f8:3c:1e:d3:1e"
 
       # Deploy to gh-pages
       - run:
