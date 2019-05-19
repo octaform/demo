@@ -60,6 +60,10 @@ jobs:
   deploy:
     <<: *defaults
     steps:
+      - add_ssh_keys:
+          fingerprints:
+            - $GITHUB_TOKEN
+            
       - attach_workspace:
           at: ~/tmp
 
