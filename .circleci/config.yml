@@ -65,7 +65,7 @@ jobs:
 
       - add_ssh_keys:
           fingerprints: 
-            - "ad:96:4b:bc:7f:93:b5:a8:7f:27:3e:46:99:fe:5c:e6"
+            - "16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48"
 
       # Configure gh-pages dependencies
       - run:
