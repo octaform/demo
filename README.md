@@ -8,7 +8,7 @@
   </div>
 </h1>
 
-Octaform helps developers validate forms in an easy way being completely agnostic the framework that you're using. Start to use right now and let us know what you are thinking about. [Contact Us](https://github.com/octaform/octaform/issues)
+Octaform helps developers validate forms in an easy way being completely agnostic to the framework that you're using. Start to use right now and let us know what you are thinking about. [Contact Us](https://github.com/octaform/octaform/issues)
 
 ## Octaform Validate
 This page is built using [Octaform Validate](https://github.com/octaform/octaform) to know more about it check out the documentation at [https://github.com/octaform/octaform](https://github.com/octaform/octaform). If you are searching the additional validations follow the link [https://github.com/octaform/octaform-additional](https://github.com/octaform/octaform-additional)
