@@ -73,7 +73,7 @@ jobs:
 
       - add_ssh_keys:
           fingerprints:
-            - "$GITHUB_TOKEN"
+            - "${GITHUB_TOKEN}"
 
       # Deploy to gh-pages
       - run:
