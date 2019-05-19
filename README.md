@@ -11,7 +11,7 @@
 Octaform helps developers validate forms in an easy way being completely agnostic the framework that you're using. Start to using right now and let us know what you are thinking about [contact us](https://github.com/octaform/octaform/issues)
 
 ## Octaform Validate
-This page is built using [Octaform Validate](https://github.com/octaform/octaform) to know more about it check out the documentation at [https://github.com/octaform/octaform](https://github.com/octaform/octaform). If you are searching the additional validation follow the link [https://github.com/octaform/octaform-additional](https://github.com/octaform/octaform-additional)
+This page is built using [Octaform Validate](https://github.com/octaform/octaform) to know more about it check out the documentation at [https://github.com/octaform/octaform](https://github.com/octaform/octaform). If you are searching the additional validations follow the link [https://github.com/octaform/octaform-additional](https://github.com/octaform/octaform-additional)
 
 ## Report an issue
 - Octaform Validate - Issues [contact us](https://github.com/octaform/octaform/issues)
