@@ -63,7 +63,8 @@ jobs:
       - attach_workspace:
           at: ~/tmp
 
-      # https://github.com/IntelAI/mlt/issues/466
+      # Fix issue with github ssh host 
+      # Reference: https://github.com/IntelAI/mlt/issues/466
       - run:
           name: SSH fix issue
           command: |
@@ -78,7 +79,7 @@ jobs:
 
       # Configure gh-pages dependencies
       - run:
-          name: Install and configure dependencies
+          name: Install and configure GIT credentials
           command: |
             sudo npm install -g --silent gh-pages
             git config user.email $GIT_EMAIL
@@ -98,7 +99,7 @@ workflows:
       - build:
           filters:
             branches:
-              only: develop
+              only: master
       
       # Publish to gh-pages
       - deploy:
@@ -106,4 +107,4 @@ workflows:
             - build
           filters:
             branches:
-              only: develop
+              only: master

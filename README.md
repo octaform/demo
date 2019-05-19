@@ -1,10 +1,21 @@
-# Octaform Validate Demo
+<h1 align="center">
+  <div align="center">
+    <img src="https://avatars2.githubusercontent.com/u/37938941?s=400&u=b7a61cbf6b9686cb78d50258213b256159dbb7af&v=4" height="200" width="200"/>
+  </div>
+  <div align="center">
+    Octaform Validate
+    <br />Demo page
+  </div>
+</h1>
 
-This page is built using [Octaform Validate](https://github.com/octaform/octaform) to know more about it check out the documentation in [https://github.com/octaform/octaform](https://github.com/octaform/octaform). If you are searching the additional validation follow the link [https://github.com/octaform/octaform-additional](https://github.com/octaform/octaform-additional)
+Octaform helps developers validate forms in an easy way being completely agnostic the framework that you're using. Start to using right now and let us know what you are thinking about [contact us](https://github.com/octaform/octaform/issues)
 
-## Issues
-- Octaform follow the [link here](https://github.com/octaform/octaform/issues)
+## Octaform Validate
+This page is built using [Octaform Validate](https://github.com/octaform/octaform) to know more about it check out the documentation at [https://github.com/octaform/octaform](https://github.com/octaform/octaform). If you are searching the additional validation follow the link [https://github.com/octaform/octaform-additional](https://github.com/octaform/octaform-additional)
 
-- Octaform Additional follow the [link here](https://github.com/octaform/octaform-additional/issues)
+## Report an issue
+- Octaform Validate - Issues [contact us](https://github.com/octaform/octaform/issues)
 
-- Octaform Demo Page follow the [link here](https://github.com/octaform/demo/issues)
+- Octaform Additional - Issues [contact us](https://github.com/octaform/octaform-additional/issues)
+
+- Octaform Validate / Demo - Issues [contact us](https://github.com/octaform/demo/issues)
