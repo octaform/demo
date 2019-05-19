@@ -88,7 +88,7 @@ jobs:
       # Deploy to gh-pages
       - run:
           name: Deploy to gh-pages branch
-          command: gh-pages --dotfiles --message "CircleCI Deploy" --dist dist/
+          command: gh-pages --dotfiles --message "[skip ci] CircleCI Deploy" --dist dist/
 
 workflows:
   version: 2
@@ -99,7 +99,6 @@ workflows:
       - build:
           filters:
             branches:
-              ignore: gh-pages
               only: master
 
       # Publish to gh-pages
@@ -108,5 +107,4 @@ workflows:
             - build
           filters:
             branches:
-              ignore: gh-pages
               only: master
