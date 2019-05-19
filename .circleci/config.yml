@@ -65,15 +65,11 @@ jobs:
 
       - run:
           name: SSH fix issue
-          command: |
-            mkdir -p ~/.ssh/
-            echo -e "Host github.com\n\tStrictHostKeyChecking no\n\tUserKnownHostsFile /dev/null\n" > ~/.ssh/config
-            chmod 600 ~/.ssh/config
-            ssh-keyscan -Ht rsa github.com >> ~/.ssh/known_hosts
+          command: ./.circleci/ssh_github-host-fix.sh
 
       - add_ssh_keys:
           fingerprints: 
-            - "1c:65:26:59:0c:8d:07:06:70:13:b4:38:32:7b:75:92"
+            - $GITHUB_TOKEN
 
       # Configure gh-pages dependencies
       - run:
