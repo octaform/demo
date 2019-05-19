@@ -65,7 +65,8 @@ jobs:
 
       - run:
           name: SSH fix issue
-          command: ./.circleci/ssh_github-host-fix.sh
+          command: 
+            - sh ./ssh_github-host-fix.sh
 
       - add_ssh_keys:
           fingerprints: 
