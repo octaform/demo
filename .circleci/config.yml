@@ -62,8 +62,8 @@ jobs:
     steps:
       - add_ssh_keys:
           fingerprints:
-            - $GITHUB_TOKEN
-            
+            - "$GITHUB_TOKEN"
+
       - attach_workspace:
           at: ~/tmp
 
