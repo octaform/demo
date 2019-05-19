@@ -65,8 +65,7 @@ jobs:
 
       - run:
           name: SSH fix issue
-          command: 
-            - sh ./ssh_github-host-fix.sh
+          command: ./ssh_github-host-fix.sh
 
       - add_ssh_keys:
           fingerprints: 
