@@ -97,18 +97,12 @@ workflows:
     jobs:
       # Build application
       - build:
-          branches:
-            ignore:
-              - gh-pages
           filters:
             branches:
               only: master
 
       # Publish to gh-pages
       - deploy:
-          branches:
-            ignore:
-              - gh-pages
           requires:
             - build
           filters:
