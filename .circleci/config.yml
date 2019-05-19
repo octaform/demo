@@ -60,10 +60,6 @@ jobs:
   deploy:
     <<: *defaults
     steps:
-      - add_ssh_keys:
-          fingerprints:
-            - "$GITHUB_TOKEN"
-
       - attach_workspace:
           at: ~/tmp
 
@@ -75,10 +71,14 @@ jobs:
             git config user.email $GIT_EMAIL
             git config user.name "CircleCI"
 
+      - add_ssh_keys:
+          fingerprints:
+            - "$GITHUB_TOKEN"
+
       # Deploy to gh-pages
       - run:
           name: Deploy to gh-pages branch
-          command: gh-pages --dist dist/
+          command: gh-pages --dotfiles --message "CI Deploy" --dist dist/
 
 workflows:
   version: 2
