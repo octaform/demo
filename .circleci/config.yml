@@ -88,7 +88,7 @@ jobs:
       # Deploy to gh-pages
       - run:
           name: Deploy to gh-pages branch
-          command: gh-pages --dotfiles --message "[skip ci] :: CI Deploy" --dist dist/
+          command: gh-pages --dotfiles --message "[skip ci] CI Deploy" --dist dist/
 
 workflows:
   version: 2
