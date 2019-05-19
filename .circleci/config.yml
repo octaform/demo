@@ -11,12 +11,6 @@ defaults: &defaults
 jobs:
   build:
     <<: *defaults
-    
-    filters:
-      branches:
-        only: 
-          - master
-    
     steps:
       - checkout
 
@@ -65,12 +59,6 @@ jobs:
 
   deploy:
     <<: *defaults
-    
-    filters:
-      branches:
-        only: 
-          - master
-
     steps:
       - attach_workspace:
           at: ~/tmp
@@ -108,8 +96,21 @@ workflows:
   build_flow:
     jobs:
       # Build application
-      - build
+      - build:
+          branches:
+            ignore:
+              - gh-pages
+          filters:
+            branches:
+              only: master
+
       # Publish to gh-pages
       - deploy:
+          branches:
+            ignore:
+              - gh-pages
           requires:
             - build
+          filters:
+            branches:
+              only: master
