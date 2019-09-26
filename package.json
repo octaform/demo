@@ -1,7 +1,7 @@
 {
   "name": "octaform-demo",
   "version": "1.0.4",
-  "description": "Octaform Validate demo page",
+  "description": "Octaform Validate - Demo Page",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --config ./webpack/config.dev.js",
