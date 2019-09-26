@@ -92,7 +92,7 @@ jobs:
 workflows:
   version: 2
   # Build and test
-  build_flow:
+  build_deploy:
     jobs:
       # Build application
       - build:
