@@ -18,4 +18,4 @@ This page is built using [Octaform Validate](https://github.com/octaform/octafor
 
 - Octaform Additional - Issues [contact us](https://github.com/octaform/octaform-additional/issues)
 
-- Octaform Validate / Demo - Issues [contact us](https://github.com/octaform/demo/issues)
+- Octaform Validate / Demo - Issues [contact us](https://github.com/octaform/octaform.github.io/issues)
