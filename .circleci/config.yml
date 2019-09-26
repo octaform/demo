@@ -82,14 +82,13 @@ jobs:
       - run:
           name: Install/Configure GIT credentials
           command: |
-            sudo yarn global add gh-pages
             git config user.email $GIT_EMAIL
             git config user.name "CircleCI"
 
       # Deploy to gh-pages
       - run:
           name: Deploy to gh-pages branch
-          command: gh-pages -b master --dotfiles --message 'Webpage Deploy' --dist dist/
+          command: yarn deploy
 
 workflows:
   version: 2
