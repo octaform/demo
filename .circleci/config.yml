@@ -22,25 +22,26 @@ jobs:
       # Restore local dependencies from cache
       - restore_cache:
           keys: 
-            - v1-dependency-cache-{{ checksum "package.json" }}
+            - yarn-packages-{{ checksum "yarn.lock" }}
             # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
+            - yarn-packages-
 
       # Install project dependencies
       - run:
-          name: Install local dependencies
-          command: npm install
+          name: Install Dependencies
+          command: yarn install --frozen-lockfile
 
       # Cache local dependencies if they don't exist
       - save_cache:
-          key: v1-dependency-cache-{{ checksum "package.json" }}
+          name: Save Yarn Package Cache
+          key: yarn-packages-{{ checksum "yarn.lock" }}
           paths:
-            - ./node_modules
+            - ~/.cache/yarn
 
       # Test the source code
       - run:
           name: Building
-          command: npm run build:prod
+          command: yarn build:prod
 
       # Create and Save Artifact
       - run:
@@ -81,7 +82,7 @@ jobs:
       - run:
           name: Install/Configure GIT credentials
           command: |
-            sudo npm install -g gh-pages
+            sudo yarn global add gh-pages
             git config user.email $GIT_EMAIL
             git config user.name "CircleCI"
 
@@ -101,8 +102,6 @@ workflows:
             branches:
               ignore:
                 - master
-              only: 
-                - develop
 
       # Publish to gh-pages
       - deploy:
@@ -112,5 +111,3 @@ workflows:
             branches:
               ignore:
                 - master
-              only: 
-                - develop
