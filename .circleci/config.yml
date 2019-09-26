@@ -79,15 +79,16 @@ jobs:
 
       # Configure gh-pages dependencies
       - run:
-          name: Configure GIT credentials
+          name: Install/Configure GIT credentials
           command: |
+            sudo npm install -g gh-pages
             git config user.email $GIT_EMAIL
             git config user.name "CircleCI"
 
       # Deploy to gh-pages
       - run:
           name: Deploy to gh-pages branch
-          command: npm run deploy
+          command: gh-pages -b master --dotfiles --message 'Webpage Deploy' --dist dist/
 
 workflows:
   version: 2
@@ -98,7 +99,10 @@ workflows:
       - build:
           filters:
             branches:
-              only: develop
+              ignore:
+                - master
+              only: 
+                - develop
 
       # Publish to gh-pages
       - deploy:
@@ -106,4 +110,7 @@ workflows:
             - build
           filters:
             branches:
-              only: develop
+              ignore:
+                - master
+              only: 
+                - develop
