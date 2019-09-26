@@ -12,7 +12,7 @@
 */
 
 /**
-  * @license Octaform Additional v1.1.0
+  * @license Octaform Additional v1.1.1
   * git+https://github.com/octaform/octaform-additional.git
   * Copyright (c) 2018-2019, Christian Fortes
   * Released under the MIT License.
@@ -24,7 +24,7 @@ object-assign
 @license MIT
 */
 
-/** @license React v16.8.6
+/** @license React v16.9.0
  * react.production.min.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
@@ -33,7 +33,7 @@ object-assign
  * LICENSE file in the root directory of this source tree.
  */
 
-/** @license React v16.8.6
+/** @license React v16.9.0
  * react-dom.production.min.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
@@ -42,7 +42,7 @@ object-assign
  * LICENSE file in the root directory of this source tree.
  */
 
-/** @license React v0.13.6
+/** @license React v0.15.0
  * scheduler.production.min.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
