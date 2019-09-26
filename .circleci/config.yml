@@ -23,20 +23,18 @@ jobs:
       - restore_cache:
           keys: 
             - yarn-packages-{{ checksum "yarn.lock" }}
-            # fallback to using the latest cache if no exact match is found
-            - yarn-packages-
 
       # Install project dependencies
       - run:
           name: Install Dependencies
-          command: yarn install --frozen-lockfile
+          command: yarn install
 
       # Cache local dependencies if they don't exist
       - save_cache:
           name: Save Yarn Package Cache
           key: yarn-packages-{{ checksum "yarn.lock" }}
           paths:
-            - ~/.cache/yarn
+            - ~/tmp/.cache/yarn
 
       # Test the source code
       - run:
