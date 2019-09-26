@@ -8,7 +8,7 @@
     "build:prod": "npm run clean && webpack -p --config ./webpack/config.prod.js",
     "build:dev": "npm run clean && webpack --config ./webpack/config.dev.js",
     "clean": "rimraf dist",
-    "deploy": "gh-pages --dotfiles --message 'Webpage Deploy' --dist dist/",
+    "deploy": "gh-pages -b master --dotfiles --message 'Webpage Deploy' --dist dist/",
     "webpack": "node_modules/.bin/webpack",
     "rimraf": "node_modules/.bin/rimraf"
   },
