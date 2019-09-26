@@ -73,7 +73,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: `Octaform Validate - [${GIT.COMMIT_SHORT_HASH}]`,
+      title: `Octaform Validate Demo Page`,
       template: "./src/index.html"
     }),
     new ExtractTextPlugin("styles.css"),
