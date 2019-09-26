@@ -98,6 +98,7 @@ workflows:
       - build:
           filters:
             branches:
+              ignore: master
               only: develop
 
       # Publish to gh-pages
@@ -106,4 +107,5 @@ workflows:
             - build
           filters:
             branches:
+              ignore: master
               only: develop
