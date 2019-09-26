@@ -1,4 +1,5 @@
 require('webpack');
+const webpack = require('webpack');
 const Package = require('../package.json');
 const path = require('path');
 const CircularDependencyPlugin = require('circular-dependency-plugin');
@@ -6,13 +7,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const GitRevisionPlugin = require('git-revision-webpack-plugin');
 
-const gitRevisionPlugin = new GitRevisionPlugin();
-
-const GIT = {
-  COMMIT_SHORT_HASH: gitRevisionPlugin.version(),
-  COMMIT_HASH: gitRevisionPlugin.commithash(),
-  BRANCH: gitRevisionPlugin.branch()
-};
+const gitRevision = new GitRevisionPlugin();
 
 module.exports = {
   resolve: {
@@ -80,6 +75,13 @@ module.exports = {
     new CircularDependencyPlugin({
       exclude: /node_modules/,
       failOnError: false
+    }),
+    new webpack.DefinePlugin({
+      GIT: {
+        VERSION: JSON.stringify(gitRevision.version()),
+        COMMIT_HASH: JSON.stringify(gitRevision.commithash()),
+        BRANCH: JSON.stringify(gitRevision.branch()),
+      }
     })
   ]
 };

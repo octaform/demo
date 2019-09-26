@@ -20,6 +20,8 @@ export default class App extends Component {
         key => additional[key]
       )
     );
+
+    window.GIT_HASH = GIT.VERSION;
   }
 
   onSubmit = (e) => {
