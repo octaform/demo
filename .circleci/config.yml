@@ -12,6 +12,10 @@ jobs:
   build:
     <<: *defaults
     steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "b2:ab:6d:29:ce:9f:40:51:45:df:d0:f8:3c:1e:d3:1e"
+
       - checkout
 
       # Log the current branch
