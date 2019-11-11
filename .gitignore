@@ -131,4 +131,7 @@ build/
 dist/
 yarn.lock
 
+.yalc
+yalc.lock
+
 # End of https://www.gitignore.io/api/windows,linux,osx,node

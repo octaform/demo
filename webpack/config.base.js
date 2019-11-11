@@ -39,7 +39,7 @@ module.exports = {
       },
       {
         test: /\.js$/,
-        exclude: /node_modules/,
+        exclude: /node_modules|\.yalc/,
         use: ["babel-loader"]
       },
       {
@@ -73,7 +73,7 @@ module.exports = {
     }),
     new ExtractTextPlugin("styles.css"),
     new CircularDependencyPlugin({
-      exclude: /node_modules/,
+      exclude: /node_modules|\.yalc/,
       failOnError: false
     }),
     new webpack.DefinePlugin({
