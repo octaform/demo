@@ -10,7 +10,7 @@
     "clean": "rimraf dist",
     "webpack": "node_modules/.bin/webpack",
     "rimraf": "node_modules/.bin/rimraf",
-    "pkg:deploy": "gh-pages -b master --dotfiles --message 'Webpage Deploy' --dist dist/",
+    "pkg:deploy": "npm run build:prod && gh-pages -b master --dotfiles --message 'Webpage Deploy' --dist dist/",
     "pkg:core:link": "yalc link octaform && cd .yalc/octaform && yarn install && cd ../..",
     "pkg:additional:link": "yalc link octaform-additional && cd .yalc/octaform-additional && yarn install && cd ../.."
   },
