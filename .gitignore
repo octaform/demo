@@ -129,7 +129,6 @@ $RECYCLE.BIN/
 # Project
 build/
 dist/
-yarn.lock
 
 .yalc
 yalc.lock

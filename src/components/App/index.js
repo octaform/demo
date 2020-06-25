@@ -4,10 +4,10 @@ import classNames from "classnames";
 import additionalPkg from "octaform-additional/package.json";
 import additional from "octaform-additional";
 import octaPkg from "octaform/package.json";
-import Icon from "Shared/components/Icon";
+import Octaform, { validate } from "octaform";
+import Icon from "../../shared/components/Icon";
 import Errors from "../Errors";
 import ValidationMap from "./ValidationMap";
-import Octaform, { validate } from "octaform";
 
 export default class App extends Component {
   constructor(props) {

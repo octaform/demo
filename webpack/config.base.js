@@ -20,17 +20,7 @@ module.exports = {
       ".eot",
       ".woff",
       ".woff2"
-    ],
-    alias: {
-      Root: path.resolve(__dirname, "../"),
-      Styles: path.resolve(__dirname, "../src/scss"),
-      Utils: path.resolve(__dirname, "../src/utils"),
-      Shared: path.resolve(__dirname, "../src/shared"),
-      Site: path.resolve(__dirname, "../src/site"),
-      Demo: path.resolve(__dirname, "../src/demo"),
-      Icons: path.resolve(__dirname, "../src/img"),
-      Assets: path.resolve(__dirname, "../src/assets")
-    }
+    ]
   },
   entry: {
     bundle: "./src/index.js",
