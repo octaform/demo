@@ -1,0 +1,13 @@
+$font-path: '~Assets/fonts/Grayson';
+$font-name: 'GraysonRegular';
+
+@font-face {
+  font-family: 'Grayson';
+  src: url('#{$font-path}/#{$font-name}.eot'),
+       url('#{$font-path}/#{$font-name}.eot?#iefix') format('embedded-opentype'),
+       url('#{$font-path}/#{$font-name}.woff2') format('woff2'),
+       url('#{$font-path}/#{$font-name}.woff') format('woff'),
+       url('#{$font-path}/#{$font-name}.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}

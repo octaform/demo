@@ -1,0 +1,49 @@
+$font-path: '~Assets/fonts/SpaceMono';
+$font-regular-name: 'SpaceMono-Regular';
+$font-italic-name: 'SpaceMono-Italic';
+$font-bold-name: 'SpaceMono-Bold';
+$font-boldItalic-name: 'SpaceMono-BoldItalic';
+
+@font-face {
+  font-family: 'Space Mono';
+  src: url('#{$font-path}/#{$font-regular-name}.eot'),
+       url('#{$font-path}/#{$font-regular-name}.eot?#iefix') format('embedded-opentype'),
+       url('#{$font-path}/#{$font-regular-name}.woff2') format('woff2'),
+       url('#{$font-path}/#{$font-regular-name}.woff') format('woff'),
+       url('#{$font-path}/#{$font-regular-name}.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Space Mono';
+  src: url('#{$font-path}/#{$font-boldItalic-name}.eot'),
+       url('#{$font-path}/#{$font-boldItalic-name}.eot?#iefix') format('embedded-opentype'),
+       url('#{$font-path}/#{$font-boldItalic-name}.woff2') format('woff2'),
+       url('#{$font-path}/#{$font-boldItalic-name}.woff') format('woff'),
+       url('#{$font-path}/#{$font-boldItalic-name}.ttf') format('truetype');
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Space Mono';
+  src: url('#{$font-path}/#{$font-italic-name}.eot'),
+       url('#{$font-path}/#{$font-italic-name}.eot?#iefix') format('embedded-opentype'),
+       url('#{$font-path}/#{$font-italic-name}.woff2') format('woff2'),
+       url('#{$font-path}/#{$font-italic-name}.woff') format('woff'),
+       url('#{$font-path}/#{$font-italic-name}.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Space Mono';
+  src: url('#{$font-path}/#{$font-bold-name}.eot'),
+       url('#{$font-path}/#{$font-bold-name}.eot?#iefix') format('embedded-opentype'),
+       url('#{$font-path}/#{$font-bold-name}.woff2') format('woff2'),
+       url('#{$font-path}/#{$font-bold-name}.woff') format('woff'),
+       url('#{$font-path}/#{$font-bold-name}.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}

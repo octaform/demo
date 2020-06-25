@@ -1,51 +1,73 @@
-import React, { Component } from 'react';
-import additionalPkg from 'octaform-additional/package.json';
-import additional from 'octaform-additional';
-import octaPkg from 'octaform/package.json';
-import Octaform from 'octaform';
-import classNames from 'classnames';
-import Errors from '../Errors';
-import ValidationMap from './ValidationMap';
-import images from '../../utils/images';
+/* eslint-disable no-undef */
+import React, { Component } from "react";
+import classNames from "classnames";
+import additionalPkg from "octaform-additional/package.json";
+import additional from "octaform-additional";
+import octaPkg from "octaform/package.json";
+import Icon from "Shared/components/Icon";
+import Errors from "../Errors";
+import ValidationMap from "./ValidationMap";
+import Octaform, { validate } from "octaform";
 
 export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       fieldErrors: {}
-    }
+    };
 
-    Octaform.validator.add(
-      Object.keys(additional).map(
-        key => additional[key]
-      )
-    );
-
+    Octaform.validator.add(Object.keys(additional).map(key => additional[key]));
     window.GIT_HASH = GIT.VERSION;
+
+    console.log({ Octaform, validate, additional });
   }
 
-  onSubmit = (e) => {
+  getValidationMap = () => {
+    return Object.keys(ValidationMap).reduce((acc, key) => {
+      const ref = this[key];
+
+      if(ref) {
+        return { ...acc, [key]: { ...acc[key], ref } }
+      }
+
+      return acc;
+    }, ValidationMap);
+  }
+
+  onSubmit = e => {
     e.preventDefault();
-    const validate = Octaform.validate(ValidationMap);
+    const validation = this.getValidationMap();
+    const valid = Octaform.validate(validation);
 
     this.setState({
-      fieldErrors: validate.reduce((acc, item) => ({ ...acc, [item.field]: item }), {})
+      fieldErrors: valid.reduce(
+        (acc, item) => ({ ...acc, [item.field]: item }),
+        {}
+      )
     });
 
-    console.log('onSubmit::', validate);
-  }
+    console.log("onSubmit::", valid);
+  };
 
-  onChange = (event) => {
-    const fieldname = event.target.name;
-    const validate = Octaform.validate({ [fieldname]: ValidationMap[fieldname] });
+  onChange = (event, name) => {
+    const fieldname = event.target.name || name;
+    const ref = this[fieldname];
 
-    this.setState((state) => {
+    const valid = Octaform.validate({
+      [fieldname]: {
+        ...(ref && { ref }),
+        value: event.target.value,
+        ...ValidationMap[fieldname]
+      }
+    });
+
+    this.setState(state => {
       const newState = {
         ...state.fieldErrors,
-        [fieldname]: validate.filter(item => item.field === fieldname)[0]
+        [fieldname]: valid.filter(item => item.field === fieldname)[0]
       };
 
-      if(!validate.some(item => item.field === fieldname)) {
+      if (!valid.some(item => item.field === fieldname)) {
         delete newState[fieldname];
       }
 
@@ -54,7 +76,26 @@ export default class App extends Component {
       };
     });
 
-    console.log('onChange::', validate);
+    console.log("onChange::", valid);
+  };
+
+  isRequiredField = (field) => {
+    const map = ValidationMap[field] || {};
+    const isRequired = (
+      map.rules
+        ? (
+          Array.isArray(map.rules)
+            ? map.rules.includes('required')
+            : Object.keys(map.rules).includes('required')
+        )
+        : (
+          map.constructor === String 
+            ? map === 'required'
+            : false 
+        )
+    );
+
+    return isRequired ? '*' : '';
   }
 
   render() {
@@ -63,19 +104,18 @@ export default class App extends Component {
 
     return (
       <div>
+        <header className="header">
+          <a className="logo" href="https://github.com/octaform/octaform" rel="noopener noreferrer" target="_blank">
+            <Icon slug="logo" className="logo__icon" />
+            <p className="logo__content">
+              <span className="logo__title">Octaform</span>
+              <span className="logo__description">form validation</span>
+            </p>
+          </a>
+        </header>
+
         <form className="container" onSubmit={this.onSubmit}>
           <div className="row">
-            <div className="col-12">
-              <h4 className="container__title">Octaform Validate - Demo</h4>
-
-              <div className="container__links">
-                <a href="https://github.com/octaform/octaform" rel="noopener noreferrer" target="_blank" className="github-link">
-                  <img src={images.githubLogo} alt="Octaform - Github" />
-                  <span>Github</span>
-                </a>
-              </div>
-            </div>
-
             {!!errors.length && (
               <div className="col-12">
                 <Errors errors={errors} />
@@ -86,63 +126,73 @@ export default class App extends Component {
               <span className="span__info">* Required fields</span>
             </div>
 
-            <label className={
-              classNames("col-6", {
-                'invalid': fieldErrors.firstName
-              })
-            }>
-              <span className="label">First Name*</span>
-              <input 
-                type="text" 
-                name="firstName"
-                autoComplete='given-name'
+            <label
+              className={classNames("col-4", {
+                invalid: fieldErrors.firstName
+              })}
+            >
+              <span className="label">First Name {this.isRequiredField('firstName')}</span>
+              <input
+                type="text"
+                autoComplete="given-name"
                 ref={r => this.firstName = r}
+                onChange={event => this.onChange(event, "firstName")}
+              />
+            </label>
+
+            <label
+              className={classNames("col-4", {
+                invalid: fieldErrors.lastName
+              })}
+            >
+              <span className="label">Last Name {this.isRequiredField('lastName')}</span>
+              <input
+                type="text"
+                name="lastName"
+                autoComplete="family-name"
+                ref={r => this.lastName = r}
                 onChange={this.onChange}
               />
             </label>
 
-            <label className={
-              classNames("col-6", {
-                'invalid': fieldErrors.lastName
-              })
-            }>
-              <span className="label">Last Name*</span>
-              <input 
+            <label
+              className={classNames("col-4", {
+                invalid: fieldErrors.birthDate
+              })}
+            >
+              <span className="label">Birth Date {this.isRequiredField('birthDate')}</span>
+              <input
                 type="text"
-                name="lastName"
-                autoComplete='family-name'
-                ref={r => this.lastName = r}
+                name="birthDate"
                 onChange={this.onChange}
               />
             </label>
           </div>
 
           <div className="row">
-            <label className={
-              classNames("col-6", {
-                'invalid': fieldErrors.email
-              })
-            }>
-              <span className="label">Email*</span>
-              <input 
-                type="text" 
+            <label
+              className={classNames("col-6", {
+                invalid: fieldErrors.email
+              })}
+            >
+              <span className="label">Email {this.isRequiredField('email')}</span>
+              <input
+                type="text"
                 name="email"
-                autoComplete='email'
-                ref={r => this.email = r}
+                autoComplete="email"
                 onChange={this.onChange}
               />
             </label>
 
-            <label className={
-              classNames("col-6", {
-                'invalid': fieldErrors.country
-              })
-            }>
-              <span className="label">Country*</span>
-              <select 
-                name="country" 
-                autoComplete='country-name'
-                ref={r => this.country = r}
+            <label
+              className={classNames("col-6", {
+                invalid: fieldErrors.country
+              })}
+            >
+              <span className="label">Country {this.isRequiredField('country')}</span>
+              <select
+                name="country"
+                autoComplete="country-name"
                 onChange={this.onChange}
               >
                 <option value="">Select a country</option>
@@ -152,135 +202,126 @@ export default class App extends Component {
               </select>
             </label>
 
-            <label className={
-              classNames("col-6", {
-                'invalid': fieldErrors.password
-              })
-            }>
-              <span className="label">Password*</span>
-              <input 
-                type="password" 
+            <label
+              className={classNames("col-6", {
+                invalid: fieldErrors.password
+              })}
+            >
+              <span className="label">Password {this.isRequiredField('password')}</span>
+              <input
+                type="password"
                 name="password"
-                ref={r => this.password = r}
                 onChange={this.onChange}
               />
             </label>
 
-            <label className={
-              classNames("col-6", {
-                'invalid': fieldErrors.confirmPassword
-              })
-            }>
-              <span className="label">Confirm password*</span>
-              <input 
-                type="password" 
-                name="confirmPassword" 
-                ref={r => this.confirmPassword = r}
+            <label
+              className={classNames("col-6", {
+                invalid: fieldErrors.confirmPassword
+              })}
+            >
+              <span className="label">Confirm password {this.isRequiredField('confirmPassword')}</span>
+              <input
+                type="password"
+                name="confirmPassword"
                 onChange={this.onChange}
               />
             </label>
-            
-            <label className={
-              classNames("col-6", {
-                'invalid': fieldErrors.range
-              })
-            }>
-              <span className="label">Type a value between 5 and 8</span>
-              <input 
-                name="range" 
+
+            <label
+              className={classNames("col-6", {
+                invalid: fieldErrors.range
+              })}
+            >
+              <span className="label">Type a value between 5 and 8 {this.isRequiredField('range')}</span>
+              <input
+                name="range"
                 type="text"
-                ref={r => this.range = r}
                 onChange={this.onChange}
               />
             </label>
 
-            <label className={
-              classNames("col-6", {
-                'invalid': fieldErrors.url
-              })
-            }>
-              <span className="label">Type your site address</span>
-              <input 
-                name="url" 
+            <label
+              className={classNames("col-6", {
+                invalid: fieldErrors.url
+              })}
+            >
+              <span className="label">Type your site address {this.isRequiredField('url')}</span>
+              <input
+                name="url"
                 type="text"
-                ref={r => this.url = r}
                 onChange={this.onChange}
               />
             </label>
 
-            <label className={
-              classNames("col-12", {
-                'invalid': fieldErrors.file
-              })
-            }>
-              <span className="label">Upload a file*</span>
-              <input 
-                name="file" 
+            <label
+              className={classNames("col-12", {
+                invalid: fieldErrors.file
+              })}
+            >
+              <span className="label">Upload a file {this.isRequiredField('file')}</span>
+              <input
+                name="file"
                 type="file"
-                ref={r => this.file = r}
                 onChange={this.onChange}
               />
             </label>
 
-            <div className={
-              classNames("col-6", {
-                'invalid': fieldErrors.gender
-              })
-            }>
-              <span className="label">Gender*</span>
-              <input 
-                type="radio" 
-                name="gender" 
-                value="male" 
+            <div
+              className={classNames("col-6", {
+                invalid: fieldErrors.gender
+              })}
+            >
+              <span className="label">Gender {this.isRequiredField('gender')}</span>
+              <input
+                type="radio"
+                name="gender"
+                value="male"
                 id="genderMale"
-                ref={r => this.gender = r}
                 onChange={this.onChange}
-              /> <label htmlFor="genderMale">Male</label>
-
-              <input 
-                type="radio" 
-                name="gender" 
-                value="female" 
+              />{" "}
+              <label htmlFor="genderMale">Male</label>
+              <input
+                type="radio"
+                name="gender"
+                value="female"
                 id="genderFemale"
-                ref={r => this.gender = r}
                 onChange={this.onChange}
-              /> <label htmlFor="genderFemale">Female</label>
+              />{" "}
+              <label htmlFor="genderFemale">Female</label>
             </div>
-            
-            <div className={
-              classNames("col-6", {
-                'invalid': fieldErrors.checkbox
-              })
-            }>
-              <span className="label">Do you have a portfolio*</span>
+
+            <div
+              className={classNames("col-6", {
+                invalid: fieldErrors.checkbox
+              })}
+            >
+              <span className="label">Do you have a portfolio {this.isRequiredField('checkbox')}</span>
               <label className="checkbox">
-                <input 
-                  name="checkbox" 
-                  type="checkbox" 
+                <input
+                  name="checkbox"
+                  type="checkbox"
                   value="yes"
-                  ref={r => this.checkbox = r}
                   onChange={this.onChange}
                 />
                 <span>Yes</span>
               </label>
 
               <label className="checkbox">
-                <input 
-                  name="checkbox" 
-                  type="checkbox" 
+                <input
+                  name="checkbox"
+                  type="checkbox"
                   value="no"
-                  ref={r => this.checkbox = r}
                   onChange={this.onChange}
                 />
                 <span>No</span>
               </label>
-              
+
               <label className="checkbox">
-                <input 
-                  name="checkbox" 
-                  type="checkbox" 
+                <input
+                  name="checkbox"
+                  type="checkbox"
                   value="maybe"
-                  ref={r => this.checkbox = r}
                   onChange={this.onChange}
                 />
                 <span>Maybe</span>
@@ -289,22 +330,21 @@ export default class App extends Component {
           </div>
 
           <div className="row">
-            <div className={
-              classNames("col-12", {
-                'invalid': fieldErrors.resume
-              })
-            }>
+            <div
+              className={classNames("col-12", {
+                invalid: fieldErrors.resume
+              })}
+            >
               <label>
-                <span className="label">Resume*</span>
-                <textarea 
-                  name="resume" 
-                  ref={r => this.resume = r}
+                <span className="label">Resume {this.isRequiredField('resume')}</span>
+                <textarea
+                  name="resume"
                   onChange={this.onChange}
                 />
               </label>
             </div>
           </div>
-          
+
           <div className="row">
             <div className="col-6 col-version">
               <ul className="package-version">
@@ -314,10 +354,8 @@ export default class App extends Component {
             </div>
 
             <div className="col-6 col-button">
-              <button 
-                className="button-primary" 
-                type="submit"
-              >Validate
+              <button className="button-primary" type="submit">
+                Validate
               </button>
             </div>
           </div>

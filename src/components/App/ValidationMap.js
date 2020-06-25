@@ -12,6 +12,11 @@ export default {
   lastName: {
     rules: ['required', 'minlength:3']
   },
+  birthDate: {
+    rules: {
+      date: 'DD/MM/YYYY'
+    }
+  },
   email: {
     rules: ['required', 'email']
   },

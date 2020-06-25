@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'Grayson';
+    src: url('GraysonRegular.eot');
+    src: url('GraysonRegular.eot?#iefix') format('embedded-opentype'),
+        url('GraysonRegular.woff2') format('woff2'),
+        url('GraysonRegular.woff') format('woff'),
+        url('GraysonRegular.ttf') format('truetype'),
+        url('GraysonRegular.svg#GraysonRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
