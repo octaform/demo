@@ -5,7 +5,7 @@ import additionalPkg from "octaform-additional/package.json";
 import additional from "octaform-additional";
 import octaPkg from "octaform/package.json";
 import Octaform, { validate } from "octaform";
-import Icon from "../../shared/components/Icon";
+import Icon from "../../shared/components/Icon/index";
 import Errors from "../Errors";
 import ValidationMap from "./ValidationMap";
 
