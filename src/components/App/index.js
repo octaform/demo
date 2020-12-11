@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import React, { Component } from "react";
+import { Component } from "react";
 import classNames from "classnames";
 import additionalPkg from "octaform-additional/package.json";
 import additional from "octaform-additional";
@@ -7,7 +7,9 @@ import octaPkg from "octaform/package.json";
 import Octaform, { validate } from "octaform";
 import Icon from "../../shared/components/Icon/index";
 import Errors from "../Errors";
+import Label from '../Fields/Label';
 import ValidationMap from "./ValidationMap";
+import Joi from "@hapi/joi";
 
 export default class App extends Component {
   constructor(props) {
@@ -18,8 +20,6 @@ export default class App extends Component {
 
     Octaform.validator.add(Object.keys(additional).map(key => additional[key]));
     window.GIT_HASH = GIT.VERSION;
-
-    console.log({ Octaform, validate, additional });
   }
 
   getValidationMap = () => {
@@ -46,7 +46,12 @@ export default class App extends Component {
       )
     });
 
-    console.log("onSubmit::", valid);
+    const schema = Joi.object({
+      limit: Joi.number().integer().required(),
+      numbers: Joi.array().length(Joi.ref('limit')).required()
+    })
+
+    console.log("onSubmit::", schema);
   };
 
   onChange = (event, name) => {
@@ -125,7 +130,7 @@ export default class App extends Component {
             <div className="col-12">
               <span className="span__info">* Required fields</span>
             </div>
-
+            
             <label
               className={classNames("col-4", {
                 invalid: fieldErrors.firstName

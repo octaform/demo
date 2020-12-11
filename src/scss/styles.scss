@@ -6,7 +6,7 @@
 @import './fonts/index';
 
 html, body {
-  background: #fbfbfb;
+  background: #f9f9f9;
 }
 
 * , *:after, *:before{
@@ -49,7 +49,6 @@ html, body {
 }
 
 .footer {
-  // background: #333;
   display: block;
   text-align: center;
   padding: 15px 0;
@@ -93,6 +92,25 @@ html, body {
   }
 }
 
+input,
+textarea,
+select {
+  display: block;
+  width: 100%;
+  height: 38px;
+  padding: 6px 10px;
+  border: 1px solid #eaeaea;
+  border-radius: 4px;
+  box-shadow: none;
+  box-sizing: border-box;
+  font-weight: normal;
+  font-size: 13px;
+
+  &:focus {
+    outline: 0;
+  }
+}
+
 label {
   color: #4d4d4d;
   cursor: pointer;
@@ -103,35 +121,32 @@ label {
   margin-bottom: 0;
 }
 
-label,
-div {
-  .label{ 
+.label {
+  $self: &;
+  &__title { 
     font-weight: 600;
     display: block;
-    font-size: 14px;
+    font-size: 13px;
+    letter-spacing: 1px;
     margin-bottom: 5px;
-  }
-}
-
-.invalid {
-  span, label {
-    color: $colorWarning;
+    padding-left: 5px;
   }
 
-  select, textarea {
-    border-color: $colorWarning;
-  }
+  &--error {
+    #{$self}__title {
+      color: $colorWarning;
+    }
 
-  @include inputTextTypes {
-    border-color: $colorWarning;
-  }  
-}
+    #{$self}__field {
+      border-color: $colorWarning;
+    }
 
-@include inputTextTypes {
-  @extend %inputTextStyle;
-  
-  &:focus{
-    @extend %inputFocusStyle;
+    #{$self}__error {
+      color: $colorWarning;
+      font-size: 12px;
+      letter-spacing: 1px;
+      padding-left: 5px;
+    }
   }
 }
 
@@ -143,105 +158,6 @@ input {
     margin: 0;
     position: relative;
     padding: 6px 10px;
-  }
-
-  &[type="checkbox"]{
-    position: relative;
-
-    &:focus{
-      outline: 0;
-
-      &:before{
-        @extend %inputFocusStyle;
-      }
-    }
-
-    &:checked{
-      &:after{
-        opacity: 1;
-      }
-    }
-
-    &:before{
-      content: "";
-      width: 14px;
-      height: 14px;
-      background: #FFF;
-      pointer-events: none;
-      display: inline-block;
-      border: 1px solid #D1D1D1;
-      @extend %centerElement;
-      top: 1px;
-    }
-
-    &:after{
-      content: '';
-      width: 5px;
-      height: 8px;
-      opacity: 0;
-      display: block;
-      pointer-events: none;
-      transform: rotate(45deg);
-      border-bottom: 2px solid $colorBlue;
-      border-right: 2px solid $colorBlue;
-      @extend %centerElement;
-      top: -1px;
-      left: 1px;
-    }
-  }
-
-  &[type="radio"]{
-    position: relative;
-    outline: 0;
-
-    &:focus{
-      &:before{
-        @extend %inputFocusStyle;
-      }
-    }
-
-    &:checked{
-      &:before{
-        border-color: $colorBlue;
-        background: $colorBlue;
-      }
-
-      &:after{
-        opacity: 1;
-      }
-    }
-
-    &:before{
-      content: "";
-      width: 16px;
-      height: 16px;
-      background: #FFF;
-      display: inline-block;
-      border-radius: 16px;
-      border: 1px solid #D1D1D1;
-      position: absolute;
-      right: 0;
-      left: -1px;
-      top: 2px;
-      bottom: 0;
-      margin: auto;
-    }
-
-    &:after{
-      opacity: 0;
-      content: "";
-      width: 6px;
-      height: 6px;
-      display: inline-block;
-      background: #FFF;
-      position: absolute;
-      border-radius: 19px;
-      margin: auto;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      top: 2px;
-    }
   }
 }
 
@@ -257,12 +173,135 @@ input {
   }
 }
 
-.checkbox{
+.checkbox {
+  $field_size: 16px;
   display: inline-block;
-  margin-right: 0.9rem;
+  margin-right: 20px;
+  margin-left: 5px;
 
-  span{
-    margin-left: 6px;
+  &__field {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    width: $field_size;
+    height: $field_size;
+
+    &:focus{
+      outline: 0;
+  
+      &:before{
+        border: 1px solid $colorBlue;
+        outline: 0;
+      }
+    }
+
+    &:checked{
+      &:after{
+        opacity: 1;
+      }
+    }
+
+    &:before{
+      content: "";
+      width: $field_size;
+      height: $field_size;
+      background: #FFF;
+      pointer-events: none;
+      display: inline-block;
+      border: 1px solid #D1D1D1;
+      top: 1px;
+      @extend %centerElement;
+    }
+  
+    &:after{
+      content: '';
+      width: 5px;
+      height: 8px;
+      opacity: 0;
+      display: block;
+      pointer-events: none;
+      transform: rotate(45deg);
+      border-bottom: 2px solid $colorBlue;
+      border-right: 2px solid $colorBlue;
+      top: -1px;
+      left: 1px;
+      @extend %centerElement;
+    }
+  }
+  
+  &__label {
+    display: inline-block;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+}
+
+.radio {
+  $field_size: 16px;
+  display: inline-block;
+  margin-right: 20px;
+  margin-left: 5px;
+  
+  &__field {
+    display: inline-block;
+    outline: 0;
+    width: $field_size;
+    height: $field_size;
+    position: relative;
+    vertical-align: middle;
+
+    &:focus{
+      &:before{
+        border: 1px solid $colorBlue;
+        outline: 0;
+      }
+    }
+  
+    &:checked {
+      &:before {
+        border-color: $colorBlue;
+        background: $colorBlue;
+      }
+  
+      &:after {
+        opacity: 1;
+      }
+    }
+  
+    &:before {
+      content: "";
+      width: $field_size;
+      height: $field_size;
+      background: #FFF;
+      display: inline-block;
+      border-radius: $field_size;
+      border: 1px solid #D1D1D1;
+      position: absolute;
+      left: 0px;
+      top: 0;
+      bottom: 0;
+    }
+  
+    &:after {
+      opacity: 0;
+      content: "";
+      width: 6px;
+      height: 6px;
+      display: inline-block;
+      background: #FFF;
+      position: absolute;
+      border-radius: 19px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      top: 0;
+      margin: auto;
+    }
+  }
+
+  &__label {
+    display: inline-block;
+    margin-left: 8px;
     vertical-align: middle;
   }
 }
@@ -301,16 +340,6 @@ button{
     &:focus {
       @extend %btnHoverFocusStyle;
     }
-  }
-}
-
-textarea, 
-select {
-  @extend %inputTextStyle;
-  margin: 0;
-
-  &:focus{
-    @extend %inputFocusStyle;
   }
 }
 
@@ -441,8 +470,8 @@ h4{
   text-align: right;
 }
 
-.span__info {
-  font-size: 14px;
+.required-fields-info {
+  font-size: 13px;
 }
 
 @media only screen and (max-width: 45em) {  /* 720px */

@@ -22,6 +22,9 @@ module.exports = {
       ".woff2"
     ]
   },
+  externals: {
+    React: 'React'
+  },
   entry: {
     bundle: "./src/index.js",
     vendor: Object.keys(Package.dependencies)
